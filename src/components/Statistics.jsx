@@ -5,52 +5,51 @@
 */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Section } from './Section';
 import { Notification } from './Notification';
 
-export class Counter extends React.Component {
+export class Statistics extends React.Component {
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
 
-  total = 0;
-
-  static propTypes = {
-    good: PropTypes.number,
-    neutral: PropTypes.number,
-    bad: PropTypes.number,
-  };
+  // total = 0;
 
   good = () => {
     this.setState(prevState => ({ good: prevState.good + 1 }));
-    this.total += 1;
+    this.total();
   };
   neutral = () => {
     this.setState(prevState => ({
       neutral: prevState.neutral + 1,
     }));
-    this.total += 1;
+    this.total();
   };
 
   bad = () => {
     this.setState(prevState => ({ bad: prevState.bad + 1 }));
-    this.total += 1;
+    this.total();
   };
 
   positivePercentage = () => {
     const { good } = this.state;
-    const positive = (good / this.total) * 100;
+    const positive = (good / this.total()) * 100;
     return positive.toFixed(2);
   };
 
   // total = () => {
-  //   const total = 0;
+  //   let total = 0;
   //   total += 1;
+  //   return total;
   // };
+
+  total = () => {
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
+  };
 
   render() {
     return (
@@ -93,7 +92,7 @@ export class Counter extends React.Component {
               <h3>Good: {this.state.good}</h3>
               <h3>Neutral: {this.state.neutral}</h3>
               <h3>Bad: {this.state.bad}</h3>
-              <h3>Total: {this.total}</h3>
+              <h3>Total: {this.total()}</h3>
               <h3>
                 Positive Feedback:{' '}
                 {!isNaN(this.positivePercentage()) &&

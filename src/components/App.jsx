@@ -1,9 +1,5 @@
-import { Counter } from './Statistics';
+import { Statistics } from './Statistics';
 
 export const App = () => {
-  return (
-    <>
-      <Counter />;
-    </>
-  );
+  return <Statistics />;
 };
