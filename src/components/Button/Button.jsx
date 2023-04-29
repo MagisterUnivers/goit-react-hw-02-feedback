@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 
-const Button = ({ text, clickHandler }) => (
-  <button type="button" id={text.toLowerCase()} onClick={clickHandler}>
-    {text}
-  </button>
-);
+function Button({ text, clickHandler }) {
+  return (
+    <button type="button" id={text.toLowerCase()} onClick={clickHandler}>
+      {text}
+    </button>
+  );
+}
 
 export default Button;
 
